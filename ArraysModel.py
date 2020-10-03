@@ -3,20 +3,26 @@ import random
 
 class ArraysModel:
 
-    def generate_random_array(self):
+    @staticmethod
+    def generate_random_array():
+        """Генерируем массив случайного размера от 1 до 10 с случайными элементами от -99 до 99"""
         size = random.randint(1, 10)
         array = [random.randint(-99, 99) for i in range(0, size)]
         return array
 
-    def join_arrays(self, array1: list, array2: list):
+    @staticmethod
+    def join_arrays(array1: list, array2: list):
+        """Создаем новый массив, соединив два других"""
         array = array1.copy()
         array.extend(array2)
         return array
 
-    def reverse_array_from_to(self, array: list, k1: int, k2: int):
+    @staticmethod
+    def reverse_array_from_to(array: list, k1: int, k2: int):
+        """Проверяем, что k1 и k2 не выходят за границы массива и переворачиваем элементы"""
         if k1 < 0 or k2 >= len(array):
             raise IndexError
-        reversed_part = array[k1:k2 + 1]
-        reversed_part.reverse()
-        result = array[:k1] + reversed_part + array[k2 + 1:]
-        return result
+        while k2 > k1:
+            array[k1], array[k2] = array[k2], array[k1]
+            k1 += 1
+            k2 -= 1

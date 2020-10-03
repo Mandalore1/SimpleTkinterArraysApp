@@ -13,6 +13,7 @@ class ArraysPresenter:
         self.view.start()
 
     def on_generator_button_pressed(self, button_number: int):
+        """Если нажата кнопка, генерируем массив и выводим"""
         if button_number == 1:
             self.array1 = self.model.generate_random_array()
             self.view.change_array(self.array1, 1)
@@ -24,8 +25,9 @@ class ArraysPresenter:
             self.view.change_array(self.array3, 3)
 
     def on_reverse_button_pressed(self, k1: int, k2: int):
+        """Если нажата кнопка переворота, переворачиваем массив 3 и выводим"""
         try:
-            self.array3 = self.model.reverse_array_from_to(self.array3, k1, k2)
+            self.model.reverse_array_from_to(self.array3, k1, k2)
             self.view.change_array(self.array3, 3)
         except IndexError:
             self.view.show_error("Index out of range")
